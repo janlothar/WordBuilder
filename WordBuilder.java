@@ -22,7 +22,7 @@ public class WordBuilder{
 		//String userInput = keyboard.nextLine();								//user input as string in userInput
 		
 		String[] test1 = "hello".split("");
-		String[] test2 = "hlop".split("");
+		String[] test2 = "hhlo".split("");
 		System.out.println(dictionary.lettersInWord(test2, test1));
 	}
 	
@@ -77,21 +77,22 @@ public class WordBuilder{
 		return null;
 	}
 	
-	//returns true if word contains all characters in letters
+	//[ARRAY] returns true if word contains all characters in letters
 	public boolean lettersInWord(String[] letters, String[] word){
-		for(int x=0;x<letters.length;x++){
-			for(int y=0;y<word.length;y++){
+		for(int x=0;x<letters.length;x++){					//go through each letter for which a match must be found
+			for(int y=0;y<word.length;y++){					//go through each letter of the word
 				if(letters[x].equals(word[y])){
-					System.out.printf("\nfound--- letters[%d]: %s = word[%d]: %s", x, letters[x], y, word[y]);
-					break;
+					//System.out.printf("\nfound--- letters[%d]: %s = word[%d]: %s", x, letters[x], y, word[y]);							//Debug: Check why a match on each letter
+					word[y]="0";							//if match is found then that letter from word is removed by writing over with "0"
+					break;									//no other matches need to be found so look at next letter
 				}
 				else if(y==word.length-1){
-					System.out.printf("\nreturning false letter[%d]: %s has no match in %s", x, letters[x], Arrays.toString(word));
-					return false;
+					//System.out.printf("\nreturning false letter[%d]: %s has no match in %s", x, letters[x], Arrays.toString(word));		//Debug: Check why not a match
+					return false;							//if no match for that letter is found in word then word does not contain all letters
 				}
 			}
 		}
 		return true;
 	}
-	
+
 }

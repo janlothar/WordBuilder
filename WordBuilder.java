@@ -49,7 +49,7 @@ public class WordBuilder{
 		}
 	}
 	
-	//Returns index of found word and -1 if not found
+	//Returns index of exact match and -1 if not found
 	public int find(String toFind, List inList){
 		if (inList.contains(toFind)){
 			return inList.indexOf(toFind);
@@ -57,12 +57,12 @@ public class WordBuilder{
 		return -1;
 	}
 	
-	//Find words containing all letters entered
+	//Return List of words containing searched letters
 	public List<String> findContains(String contains, List<String> inList){
-		List<String> toReturn = new ArrayList<String>();
-		for(int i=0;i<inList.size();i++){
-			if (lettersInWord(contains.split(""), inList.get(i).split(""))){
-				toReturn.add(inList.get(i));
+		List<String> toReturn = new ArrayList<String>();						//List to return that will be empty if no matching words are found
+		for(int i=0;i<inList.size();i++){										//Go through each word in dictionary
+			if (lettersInWord(contains.split(""), inList.get(i).split(""))){	
+				toReturn.add(inList.get(i));									//add word to toReturn if matches
 			}
 		}
 		return toReturn;

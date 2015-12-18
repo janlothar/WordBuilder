@@ -21,6 +21,8 @@ import java.util.List;
 import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
+import java.awt.Color;
+import java.awt.SystemColor;
 
 public class MainWindow {
 
@@ -69,24 +71,26 @@ public class MainWindow {
 		
 		JPanel panel_1 = new JPanel();
 		frame.getContentPane().add(panel_1, BorderLayout.NORTH);
+		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JTextPane textPaneInput = new JTextPane();
+		textPaneInput.setText("Enter letters here");
 		panel_1.add(textPaneInput);
 		
-		DefaultListModel listResults = new DefaultListModel();
+		DefaultListModel listResults = new DefaultListModel();					//create list that can be updated
 		
-		JScrollPane scrollPane = new JScrollPane();
+		JScrollPane scrollPane = new JScrollPane();								//create scroll pane for results
 		frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
 		
-		JList list = new JList(listResults);
-		scrollPane.setViewportView(list);
+		JList list = new JList(listResults);									//create list viewer with listResults
+		scrollPane.setViewportView(list);										//add list to scroll bar
 		
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.SOUTH);
-		panel.setLayout(new BorderLayout(0, 0));
+		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JButton btnBuild = new JButton("Build");
-		panel.add(btnBuild, BorderLayout.WEST);
+		panel.add(btnBuild);
 		
 		JButton btnContains = new JButton("Contains");
 		btnContains.addActionListener(new ActionListener() {
@@ -98,7 +102,7 @@ public class MainWindow {
 				}
 			}
 		});
-		panel.add(btnContains, BorderLayout.EAST);
+		panel.add(btnContains);
 		btnBuild.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String userInput = textPaneInput.getText();

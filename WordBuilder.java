@@ -22,7 +22,7 @@ public class WordBuilder{
 		Scanner keyboard = new Scanner(System.in);							//Scanner for keyboard input
 		String userInput = keyboard.nextLine();								//user input as string in userInput
 		
-		dictionary.print(dictionary.findContains(userInput, lines));
+		dictionary.print(dictionary.findAnagram(userInput, lines));
 	}
 	
 	final static String FILE_NAME = "dictionary.txt";
@@ -62,6 +62,17 @@ public class WordBuilder{
 		List<String> toReturn = new ArrayList<String>();						//List to return that will be empty if no matching words are found
 		for(int i=0;i<inList.size();i++){										//Go through each word in dictionary
 			if (checkLettersInWord(contains.split(""), inList.get(i).split(""))){	
+				toReturn.add(inList.get(i));									//add word to toReturn if matches
+			}
+		}
+		return toReturn;
+	}
+	
+	//Return List of words that can be built from given letters
+	public List<String> findAnagram(String contains, List<String> inList){
+		List<String> toReturn = new ArrayList<String>();						//List to return that will be empty if no matching words are found
+		for(int i=0;i<inList.size();i++){										//Go through each word in dictionary
+			if (checkLettersBuildWord(contains.split(""), inList.get(i).split(""))){	
 				toReturn.add(inList.get(i));									//add word to toReturn if matches
 			}
 		}

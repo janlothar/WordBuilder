@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,12 +19,10 @@ public class WordBuilder{
 		
 		WordBuilder dictionary = new WordBuilder();							//create non-static object
 		List<String> lines = dictionary.readFile(FILE_NAME);				//create List to hold lines from FILE_NAME
-		//Scanner keyboard = new Scanner(System.in);							//Scanner for keyboard input
-		//String userInput = keyboard.nextLine();								//user input as string in userInput
+		Scanner keyboard = new Scanner(System.in);							//Scanner for keyboard input
+		String userInput = keyboard.nextLine();								//user input as string in userInput
 		
-		String[] test1 = "hello".split("");
-		String[] test2 = "hhlo".split("");
-		System.out.println(dictionary.lettersInWord(test2, test1));
+		dictionary.print(dictionary.findContains(userInput, lines));
 	}
 	
 	final static String FILE_NAME = "dictionary.txt";
@@ -59,22 +58,14 @@ public class WordBuilder{
 	}
 	
 	//Find words containing all letters entered
-	public List findContains(String contains, List inList){
-		/* String[] toFind = contains.split("");
-		String[] temp;
-		List toReturn;
+	public List<String> findContains(String contains, List<String> inList){
+		List<String> toReturn = new ArrayList<String>();
 		for(int i=0;i<inList.size();i++){
-			temp = inList.get(i).split("");
-			for(int x=0;x<temp.length;x++){
-				for(int y=0;y<toFind.length;y++){
-					if(temp[x].equals(toFind[y])){
-						break;
-					}
-					
-				}
+			if (lettersInWord(contains.split(""), inList.get(i).split(""))){
+				toReturn.add(inList.get(i));
 			}
-		} */
-		return null;
+		}
+		return toReturn;
 	}
 	
 	//[ARRAY] returns true if word contains all characters in letters

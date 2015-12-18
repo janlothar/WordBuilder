@@ -1,5 +1,5 @@
 //Written by Jan Warncke
-//Heavily based on the tutorial @ http://www.javapractices.com/topic/TopicAction.do?Id=42
+//Reading from text files heavily based on the tutorial @ http://www.javapractices.com/topic/TopicAction.do?Id=42
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -61,7 +61,7 @@ public class WordBuilder{
 	public List<String> findContains(String contains, List<String> inList){
 		List<String> toReturn = new ArrayList<String>();						//List to return that will be empty if no matching words are found
 		for(int i=0;i<inList.size();i++){										//Go through each word in dictionary
-			if (lettersInWord(contains.split(""), inList.get(i).split(""))){	
+			if (checkLettersInWord(contains.split(""), inList.get(i).split(""))){	
 				toReturn.add(inList.get(i));									//add word to toReturn if matches
 			}
 		}
@@ -69,7 +69,7 @@ public class WordBuilder{
 	}
 	
 	//[ARRAY] returns true if word contains all characters in letters
-	public boolean lettersInWord(String[] letters, String[] word){
+	public boolean checkLettersInWord(String[] letters, String[] word){
 		for(int x=0;x<letters.length;x++){					//go through each letter for which a match must be found
 			for(int y=0;y<word.length;y++){					//go through each letter of the word
 				if(letters[x].equals(word[y])){
@@ -80,6 +80,22 @@ public class WordBuilder{
 				else if(y==word.length-1){
 					//System.out.printf("\nreturning false letter[%d]: %s has no match in %s", x, letters[x], Arrays.toString(word));		//Debug: Check why not a match
 					return false;							//if no match for that letter is found in word then word does not contain all letters
+				}
+			}
+		}
+		return true;
+	}
+	
+	//[ARRAY] returns true if letters can make word
+	public boolean checkLettersBuildWord(String[] letters, String[] word){
+		for(int x=0;x<word.length;x++){							//go through each letter in word for which a match must be found
+			for(int y=0;y<letters.length;y++){					//go through each letter
+				if(word[x].equals(letters[y])){
+					letters[y]="0";							//if match is found then that letter is marked as used by writing over with "0"
+					break;									//no other matches need to be found so look at next letter in word
+				}
+				else if(y==letters.length-1){
+					return false;							//if no match for that letter in word is found then letters cannot make word
 				}
 			}
 		}

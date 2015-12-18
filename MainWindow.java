@@ -23,6 +23,8 @@ import javax.swing.SwingConstants;
 import java.awt.GridLayout;
 import java.awt.Color;
 import java.awt.SystemColor;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class MainWindow {
 
@@ -74,6 +76,12 @@ public class MainWindow {
 		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JTextPane textPaneInput = new JTextPane();
+		textPaneInput.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				textPaneInput.selectAll();
+			}
+		});
 		textPaneInput.setText("Enter letters here");
 		panel_1.add(textPaneInput);
 		
@@ -95,6 +103,7 @@ public class MainWindow {
 		JButton btnContains = new JButton("Contains");
 		btnContains.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				listResults.clear();
 				String userInput = textPaneInput.getText();
 				List<String> results = dictionary.findContains(userInput, lines);
 				for (int i=0;i<results.size();i++){
@@ -105,6 +114,7 @@ public class MainWindow {
 		panel.add(btnContains);
 		btnBuild.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				listResults.clear();
 				String userInput = textPaneInput.getText();
 				List<String> results = dictionary.findAnagram(userInput, lines);
 				for (int i=0;i<results.size();i++){

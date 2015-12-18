@@ -26,7 +26,6 @@ public class WordBuilder{
 	}
 	
 	final static String FILE_NAME = "dictionary.txt";
-	//final static String OUTPUT_FILE_NAME = "C:\\Temp\\output.txt";
 	final static Charset ENCODING = StandardCharsets.UTF_8;
 	
 	//Reads lines from FILE_NAME and adds to variable lines

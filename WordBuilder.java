@@ -17,8 +17,9 @@ public class WordBuilder{
 	public static void main (String[] args) throws IOException{
 		WordBuilder dictionary = new WordBuilder();
 		List<String> lines = dictionary.readFile(FILE_NAME);
-		//text.print(lines);
-		System.out.print(dictionary.find("scabble", lines));
+		Scanner keyboard = new Scanner(System.in);
+		String userInput = keyboard.nextLine();
+		System.out.print(dictionary.find(userInput, lines));
 	}
 	
 	final static String FILE_NAME = "dictionary.txt";
@@ -44,6 +45,10 @@ public class WordBuilder{
 			return inList.indexOf(toFind);
 		}
 		return -1;
+	}
+	
+	public String findContains(String contains){
+		return null;
 	}
 	
 }

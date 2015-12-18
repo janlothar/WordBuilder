@@ -14,17 +14,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class WordBuilder{
-	
-	public static void main (String[] args) throws IOException{
 		
-		WordBuilder dictionary = new WordBuilder();							//create non-static object
-		List<String> lines = dictionary.readFile(FILE_NAME);				//create List to hold lines from FILE_NAME
-		Scanner keyboard = new Scanner(System.in);							//Scanner for keyboard input
-		String userInput = keyboard.nextLine();								//user input as string in userInput
-		
-		dictionary.print(dictionary.findAnagram(userInput, lines));
-	}
-	
 	final static String FILE_NAME = "dictionary.txt";
 	final static Charset ENCODING = StandardCharsets.UTF_8;
 	

@@ -79,7 +79,7 @@ public class MainWindow {
 		textPaneInput.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent arg0) {
-				textPaneInput.selectAll();
+				textPaneInput.selectAll();										//highlight all text on focus
 			}
 		});
 		textPaneInput.setText("Enter letters here");

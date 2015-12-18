@@ -68,12 +68,11 @@ public class MainWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 290, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel_1 = new JPanel();
 		frame.getContentPane().add(panel_1, BorderLayout.NORTH);
-		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JTextPane textPaneInput = new JTextPane();
 		textPaneInput.addFocusListener(new FocusAdapter() {
@@ -82,6 +81,13 @@ public class MainWindow {
 				textPaneInput.selectAll();										//highlight all text on focus
 			}
 		});
+		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JTextPane txtpnSpacesCountAs = new JTextPane();
+		txtpnSpacesCountAs.setEnabled(false);
+		txtpnSpacesCountAs.setEditable(false);
+		txtpnSpacesCountAs.setText("spaces count as wildcards");
+		panel_1.add(txtpnSpacesCountAs);
 		textPaneInput.setText("Enter letters here");
 		panel_1.add(textPaneInput);
 		
@@ -98,9 +104,11 @@ public class MainWindow {
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JButton btnBuild = new JButton("Build");
+		btnBuild.setToolTipText("Find words made up of only letters in the text box");
 		panel.add(btnBuild);
 		
 		JButton btnContains = new JButton("Contains");
+		btnContains.setToolTipText("Find words that use all of the letters in the text box");
 		btnContains.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				listResults.clear();
@@ -112,6 +120,10 @@ public class MainWindow {
 			}
 		});
 		panel.add(btnContains);
+		
+		JButton btnAnagram = new JButton("Anagram");
+		btnAnagram.setToolTipText("Find words containing exactly whats in the text box");
+		panel.add(btnAnagram);
 		btnBuild.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				listResults.clear();

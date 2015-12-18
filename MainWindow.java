@@ -18,6 +18,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import javax.swing.JList;
 import java.util.List;
+import java.awt.FlowLayout;
+import javax.swing.SwingConstants;
+import java.awt.GridLayout;
 
 public class MainWindow {
 
@@ -80,10 +83,23 @@ public class MainWindow {
 		
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.SOUTH);
+		panel.setLayout(new BorderLayout(0, 0));
 		
-		JButton btnEnter = new JButton("Enter");
-		panel.add(btnEnter);
-		btnEnter.addActionListener(new ActionListener() {
+		JButton btnBuild = new JButton("Build");
+		panel.add(btnBuild, BorderLayout.WEST);
+		
+		JButton btnContains = new JButton("Contains");
+		btnContains.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String userInput = textPaneInput.getText();
+				List<String> results = dictionary.findContains(userInput, lines);
+				for (int i=0;i<results.size();i++){
+					listResults.addElement(results.get(i));
+				}
+			}
+		});
+		panel.add(btnContains, BorderLayout.EAST);
+		btnBuild.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String userInput = textPaneInput.getText();
 				List<String> results = dictionary.findAnagram(userInput, lines);

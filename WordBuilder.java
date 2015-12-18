@@ -15,27 +15,30 @@ import java.util.Scanner;
 public class WordBuilder{
 	
 	public static void main (String[] args) throws IOException{
-		WordBuilder text = new WordBuilder();
-		List<String> lines = text.readFile(FILE_NAME);
+		WordBuilder dictionary = new WordBuilder();
+		List<String> lines = dictionary.readFile(FILE_NAME);
 		//text.print(lines);
-		System.out.print(text.find("scabble", lines));
+		System.out.print(dictionary.find("scabble", lines));
 	}
 	
 	final static String FILE_NAME = "dictionary.txt";
 	//final static String OUTPUT_FILE_NAME = "C:\\Temp\\output.txt";
 	final static Charset ENCODING = StandardCharsets.UTF_8;
 	
+	//Reads lines from FILE_NAME and adds to variable lines
 	List<String> readFile(String aFileName) throws IOException {
 		Path path = Paths.get(aFileName);
 		return Files.readAllLines(path, ENCODING);
 	}
 	
+	//Prints contents of list to console line-by-line 
 	public void print(List toPrint){
 		for(int i=0;i<toPrint.size();i++){
 			System.out.println(toPrint.get(i));
 		}
 	}
 	
+	//Returns index of found word and -1 if not found
 	public int find(String toFind, List inList){
 		if (inList.contains(toFind)){
 			return inList.indexOf(toFind);

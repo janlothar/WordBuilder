@@ -64,15 +64,25 @@ public class MainWindow {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		JPanel panel_1 = new JPanel();
+		frame.getContentPane().add(panel_1, BorderLayout.NORTH);
+		
 		JTextPane textPaneInput = new JTextPane();
-		frame.getContentPane().add(textPaneInput, BorderLayout.NORTH);
+		panel_1.add(textPaneInput);
 		
 		DefaultListModel listResults = new DefaultListModel();
 		
+		JScrollPane scrollPane = new JScrollPane();
+		frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
+		
 		JList list = new JList(listResults);
-		frame.getContentPane().add(list, BorderLayout.CENTER);
+		scrollPane.setViewportView(list);
+		
+		JPanel panel = new JPanel();
+		frame.getContentPane().add(panel, BorderLayout.SOUTH);
 		
 		JButton btnEnter = new JButton("Enter");
+		panel.add(btnEnter);
 		btnEnter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String userInput = textPaneInput.getText();
@@ -83,7 +93,6 @@ public class MainWindow {
 				
 			}
 		});
-		frame.getContentPane().add(btnEnter, BorderLayout.SOUTH);
 		
 		
 	}

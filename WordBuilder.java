@@ -21,7 +21,7 @@ public class WordBuilder{
 	}
 	
 	final static String FILE_NAME = "dictionary.txt";
-	final static String OUTPUT_FILE_NAME = "C:\\Temp\\output.txt";
+	//final static String OUTPUT_FILE_NAME = "C:\\Temp\\output.txt";
 	final static Charset ENCODING = StandardCharsets.UTF_8;
 	
 	List<String> readFile(String aFileName) throws IOException {

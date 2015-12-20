@@ -25,6 +25,7 @@ import java.awt.Color;
 import java.awt.SystemColor;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import javax.swing.border.BevelBorder;
 
 public class MainWindow {
 
@@ -72,6 +73,7 @@ public class MainWindow {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		frame.getContentPane().add(panel_1, BorderLayout.NORTH);
 		
 		JTextPane textPaneInput = new JTextPane();
@@ -84,9 +86,9 @@ public class MainWindow {
 		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JTextPane txtpnSpacesCountAs = new JTextPane();
-		txtpnSpacesCountAs.setEnabled(false);
+		txtpnSpacesCountAs.setBackground(Color.LIGHT_GRAY);
 		txtpnSpacesCountAs.setEditable(false);
-		txtpnSpacesCountAs.setText("spaces count as wildcards");
+		txtpnSpacesCountAs.setText("wildcards > spaces");
 		panel_1.add(txtpnSpacesCountAs);
 		textPaneInput.setText("Enter letters here");
 		panel_1.add(textPaneInput);
@@ -100,6 +102,7 @@ public class MainWindow {
 		scrollPane.setViewportView(list);										//add list to scroll bar
 		
 		JPanel panel = new JPanel();
+		panel.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		frame.getContentPane().add(panel, BorderLayout.SOUTH);
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
@@ -122,13 +125,23 @@ public class MainWindow {
 		panel.add(btnContains);
 		
 		JButton btnAnagram = new JButton("Anagram");
+		btnAnagram.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				listResults.clear();
+				String userInput = textPaneInput.getText();
+				List<String> results = dictionary.findAnagram(userInput, lines);
+				for (int i=0;i<results.size();i++){
+					listResults.addElement(results.get(i));
+				}
+			}
+		});
 		btnAnagram.setToolTipText("Find words containing exactly whats in the text box");
 		panel.add(btnAnagram);
 		btnBuild.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				listResults.clear();
 				String userInput = textPaneInput.getText();
-				List<String> results = dictionary.findAnagram(userInput, lines);
+				List<String> results = dictionary.findBuild(userInput, lines);
 				for (int i=0;i<results.size();i++){
 					listResults.addElement(results.get(i));
 				}

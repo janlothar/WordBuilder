@@ -50,18 +50,7 @@ public class WordBuilder{
 	public List<String> findContains(String contains, List<String> inList){
 		List<String> toReturn = new ArrayList<String>();						//List to return that will be empty if no matching words are found
 		for(int i=0;i<inList.size();i++){										//Go through each word in dictionary
-			if (checkLettersInWord(contains.split(""), inList.get(i).split(""))){	
-				toReturn.add(inList.get(i));									//add word to toReturn if matches
-			}
-		}
-		return toReturn;
-	}
-	
-	//Return List of words that can be built from given letters
-	public List<String> findAnagram(String contains, List<String> inList){
-		List<String> toReturn = new ArrayList<String>();						//List to return that will be empty if no matching words are found
-		for(int i=0;i<inList.size();i++){										//Go through each word in dictionary
-			if (checkLettersBuildWord(contains.split(""), inList.get(i).split(""))){	
+			if (checkLettersContains(contains.split(""), inList.get(i).split(""))){	
 				toReturn.add(inList.get(i));									//add word to toReturn if matches
 			}
 		}
@@ -69,7 +58,7 @@ public class WordBuilder{
 	}
 	
 	//[ARRAY] returns true if word contains all characters in letters
-	public boolean checkLettersInWord(String[] letters, String[] word){
+	public boolean checkLettersContains(String[] letters, String[] word){
 		for(int x=0;x<letters.length;x++){					//go through each letter for which a match must be found
 			for(int y=0;y<word.length;y++){					//go through each letter of the word
 				if(letters[x].equals(word[y])){
@@ -86,8 +75,19 @@ public class WordBuilder{
 		return true;
 	}
 	
+	//Return List of words that can be built from given letters
+	public List<String> findBuild(String contains, List<String> inList){
+		List<String> toReturn = new ArrayList<String>();						//List to return that will be empty if no matching words are found
+		for(int i=0;i<inList.size();i++){										//Go through each word in dictionary
+			if (checkLettersBuild(contains.split(""), inList.get(i).split(""))){	
+				toReturn.add(inList.get(i));									//add word to toReturn if matches
+			}
+		}
+		return toReturn;
+	}
+	
 	//[ARRAY] returns true if letters can make word
-	public boolean checkLettersBuildWord(String[] letters, String[] word){
+	public boolean checkLettersBuild(String[] letters, String[] word){
 		for(int x=0;x<word.length;x++){							//go through each letter in word for which a match must be found
 			for(int y=0;y<letters.length;y++){					//go through each letter
 				if(word[x].equals(letters[y])){
@@ -96,6 +96,32 @@ public class WordBuilder{
 				}
 				else if(y==letters.length-1){
 					return false;							//if no match for that letter in word is found then letters cannot make word
+				}
+			}
+		}
+		return true;
+	}
+	
+	//Return list of words that use exactly the given letters
+	public List<String> findAnagram(String contains, List<String> inList){
+		List<String> toReturn = new ArrayList<String>();						//List to return that will be empty if no matching words are found
+		for(int i=0;i<inList.size();i++){										//Go through each word in dictionary
+			if (contains.length() == inList.get(i).length() && checkLettersAnagram(contains.split(""), inList.get(i).split(""))){	//For anagram word must be as long as input string
+				toReturn.add(inList.get(i));									//add word to toReturn if matches
+			}
+		}
+		return toReturn;
+	}
+	
+	public boolean checkLettersAnagram(String[] letters, String[] word){
+		for(int x=0;x<letters.length;x++){					//go through each letter for which a match must be found
+			for(int y=0;y<word.length;y++){					//go through each letter of the word
+				if(letters[x].equals(word[y])){
+					word[y]="0";							//if match is found then that letter from word is removed by writing over with "0"
+					break;									//no other matches need to be found so look at next letter
+				}
+				else if(y==word.length-1){
+					return false;							//if no match for that letter is found in word then word does not contain all letters
 				}
 			}
 		}

@@ -1,5 +1,7 @@
 //Written by Jan Warncke
 //Reading from text files heavily based on the tutorial @ http://www.javapractices.com/topic/TopicAction.do?Id=42
+
+//starting working on CPSC501 assignment #1
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;

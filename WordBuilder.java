@@ -16,16 +16,15 @@ public class WordBuilder{
 	final static Charset ENCODING = StandardCharsets.UTF_8;
 	private List<String> dictionary;
 	
+	public WordBuilder() throws IOException {
+		dictionary = readFile(FILE_NAME);
+	}
+	
 	//Reads lines from FILE_NAME and adds to variable lines
 	List<String> readFile(String aFileName) throws IOException {
 		Path path = Paths.get(aFileName);
 		return Files.readAllLines(path, ENCODING);
 	}
-	
-	public WordBuilder() throws IOException {
-		dictionary = readFile(FILE_NAME);
-	}
-	
 	
 	//Print methods aren't used any more since GUI but are useful for tests
 	//Prints contents of List to console line-by-line 

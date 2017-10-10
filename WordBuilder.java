@@ -22,7 +22,7 @@ public class WordBuilder{
 	}
 	
 	//Prints contents of List to console line-by-line 
-	public void print(List toPrint){
+	public void print(List<String> toPrint){
 		for(int i=0;i<toPrint.size();i++){
 			System.out.println(toPrint.get(i));
 		}
@@ -36,7 +36,7 @@ public class WordBuilder{
 	}
 	
 	//Returns index of exact match and -1 if not found
-	public int find(String toFind, List inList){
+	public int find(String toFind, List<String> inList){
 		if (inList.contains(toFind)){
 			return inList.indexOf(toFind);
 		}

@@ -14,11 +14,16 @@ public class WordBuilder{
 		
 	final static String FILE_NAME = "dictionary.txt";
 	final static Charset ENCODING = StandardCharsets.UTF_8;
+	private List<String> dictionary;
 	
 	//Reads lines from FILE_NAME and adds to variable lines
 	List<String> readFile(String aFileName) throws IOException {
 		Path path = Paths.get(aFileName);
 		return Files.readAllLines(path, ENCODING);
+	}
+	
+	public WordBuilder() throws IOException {
+		dictionary = readFile(FILE_NAME);
 	}
 	
 	
@@ -47,11 +52,11 @@ public class WordBuilder{
 	}
 	
 	//Return List of words containing searched letters
-	public List<String> findContains(String contains, List<String> inList){
+	public List<String> findContains(String contains){
 		List<String> toReturn = new ArrayList<String>();						//List to return that will be empty if no matching words are found
-		for(int i=0;i<inList.size();i++){										//Go through each word in dictionary
-			if (checkLettersContains(contains.split(""), inList.get(i).split(""))){	
-				toReturn.add(inList.get(i));									//add word to toReturn if matches
+		for(int i=0;i<dictionary.size();i++){										//Go through each word in dictionary
+			if (checkLettersContains(contains.split(""), dictionary.get(i).split(""))){	
+				toReturn.add(dictionary.get(i));									//add word to toReturn if matches
 			}
 		}
 		return toReturn;
@@ -76,11 +81,11 @@ public class WordBuilder{
 	}
 	
 	//Return List of words that can be built from given letters
-	public List<String> findBuild(String contains, List<String> inList){
+	public List<String> findBuild(String contains){
 		List<String> toReturn = new ArrayList<String>();						//List to return that will be empty if no matching words are found
-		for(int i=0;i<inList.size();i++){										//Go through each word in dictionary
-			if (checkLettersBuild(contains.split(""), inList.get(i).split(""))){	
-				toReturn.add(inList.get(i));									//add word to toReturn if matches
+		for(int i=0;i<dictionary.size();i++){										//Go through each word in dictionary
+			if (checkLettersBuild(contains.split(""), dictionary.get(i).split(""))){	
+				toReturn.add(dictionary.get(i));									//add word to toReturn if matches
 			}
 		}
 		return toReturn;
@@ -103,11 +108,11 @@ public class WordBuilder{
 	}
 	
 	//Return list of words that use exactly the given letters
-	public List<String> findAnagram(String contains, List<String> inList){
+	public List<String> findAnagram(String contains){
 		List<String> toReturn = new ArrayList<String>();						//List to return that will be empty if no matching words are found
-		for(int i=0;i<inList.size();i++){										//Go through each word in dictionary
-			if (contains.length() == inList.get(i).length() && checkLettersAnagram(contains.split(""), inList.get(i).split(""))){	//For anagram word must be as long as input string
-				toReturn.add(inList.get(i));									//add word to toReturn if matches
+		for(int i=0;i<dictionary.size();i++){										//Go through each word in dictionary
+			if (contains.length() == dictionary.get(i).length() && checkLettersAnagram(contains.split(""), dictionary.get(i).split(""))){	//For anagram word must be as long as input string
+				toReturn.add(dictionary.get(i));									//add word to toReturn if matches
 			}
 		}
 		return toReturn;

@@ -23,15 +23,10 @@ import javax.swing.border.BevelBorder;
 public class MainWindow {
 
 	private JFrame frame;
-	final static String FILE_NAME = "dictionary.txt";
-	final static Charset ENCODING = StandardCharsets.UTF_8;
-	final static WordBuilder dictionary = new WordBuilder();
-	List<String> lines;
-	{
-		try {
-		lines = dictionary.readFile(FILE_NAME);
-		} catch(IOException e){}
-	}
+	private static WordBuilder dictionary;{
+	try {
+		dictionary = new WordBuilder();
+	}catch(IOException e) {}}
 
 	/**
 	 * Launch the application.
@@ -109,7 +104,7 @@ public class MainWindow {
 			public void actionPerformed(ActionEvent arg0) {
 				listResults.clear();
 				String userInput = textPaneInput.getText();
-				List<String> results = dictionary.findContains(userInput, lines);
+				List<String> results = dictionary.findContains(userInput);
 				for (int i=0;i<results.size();i++){
 					listResults.addElement(results.get(i));
 				}
@@ -122,7 +117,7 @@ public class MainWindow {
 			public void actionPerformed(ActionEvent arg0) {
 				listResults.clear();
 				String userInput = textPaneInput.getText();
-				List<String> results = dictionary.findAnagram(userInput, lines);
+				List<String> results = dictionary.findAnagram(userInput);
 				for (int i=0;i<results.size();i++){
 					listResults.addElement(results.get(i));
 				}
@@ -134,7 +129,7 @@ public class MainWindow {
 			public void actionPerformed(ActionEvent arg0) {
 				listResults.clear();
 				String userInput = textPaneInput.getText();
-				List<String> results = dictionary.findBuild(userInput, lines);
+				List<String> results = dictionary.findBuild(userInput);
 				for (int i=0;i<results.size();i++){
 					listResults.addElement(results.get(i));
 				}

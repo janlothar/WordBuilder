@@ -21,15 +21,17 @@ public class WordBuilder{
 		return Files.readAllLines(path, ENCODING);
 	}
 	
+	
+	//Print methods aren't used any more since GUI but are useful for tests
 	//Prints contents of List to console line-by-line 
-	public void print(List<String> toPrint){
+	private void print(List<String> toPrint){
 		for(int i=0;i<toPrint.size();i++){
 			System.out.println(toPrint.get(i));
 		}
 	}
 	
 	//Prints contents of String[] to console line-by-line 
-	public void print(String[] toPrint){
+	private void print(String[] toPrint){
 		for(int i=0;i<toPrint.length;i++){
 			System.out.println(toPrint[i]);
 		}

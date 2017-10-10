@@ -37,8 +37,9 @@ public class WordBuilder{
 		}
 	}
 	
+	//Unused but useful for checking if word was added to list
 	//Returns index of exact match and -1 if not found
-	public int find(String toFind, List<String> inList){
+	private int find(String toFind, List<String> inList){
 		if (inList.contains(toFind)){
 			return inList.indexOf(toFind);
 		}

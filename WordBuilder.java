@@ -20,7 +20,7 @@ public class WordBuilder{
 		dictionary = readFile(FILE_NAME);
 	}
 	
-	//Reads lines from FILE_NAME and adds to variable lines
+	//Reads lines from FILE_NAME and adds to variable dictionary
 	List<String> readFile(String aFileName) throws IOException {
 		Path path = Paths.get(aFileName);
 		return Files.readAllLines(path, ENCODING);
@@ -31,13 +31,6 @@ public class WordBuilder{
 	private void print(List<String> toPrint){
 		for(int i=0;i<toPrint.size();i++){
 			System.out.println(toPrint.get(i));
-		}
-	}
-	
-	//Prints contents of String[] to console line-by-line 
-	private void print(String[] toPrint){
-		for(int i=0;i<toPrint.length;i++){
-			System.out.println(toPrint[i]);
 		}
 	}
 	

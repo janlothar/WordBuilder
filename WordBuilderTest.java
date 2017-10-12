@@ -62,5 +62,19 @@ public class WordBuilderTest {
 		List<String> testList3 = new ArrayList<String>(Arrays.asList(toTestList3));
 		assertEquals(testList3, testFindAnagram.findAnagram("ram"));
 	}
+	
+	@Test
+	public void testNonAlphabet() throws IOException {
+		WordBuilder testNonAlphabet = new WordBuilder();
+		//findBuild()
+		List<String> testList1 = testNonAlphabet.findBuild("( ) ` ~ ! @ # $ % ^ & * - + = | \\ { } [ ] : ; \" ' < > , . ? /");
+		assertTrue(testList1.isEmpty());
+		//findContains()
+		List<String> testList2 = testNonAlphabet.findContains("( ) ` ~ ! @ # $ % ^ & * - + = | \\ { } [ ] : ; \" ' < > , . ? /");
+		assertTrue(testList2.isEmpty());
+		//findAnagram()
+		List<String> testList3 = testNonAlphabet.findAnagram("( ) ` ~ ! @ # $ % ^ & * - + = | \\ { } [ ] : ; \" ' < > , . ? /");
+		assertTrue(testList3.isEmpty());
+	}
 
 }

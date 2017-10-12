@@ -12,6 +12,7 @@ public class WordBuilderTest {
 	//All tests were built before major refactoring to make sure post-refactoring code gave same results
 	@Test
 	public void testFindBuild() throws IOException {
+		//Should return valid words that can be built from any given letters
 		WordBuilder testFindBuild = new WordBuilder();
 		//case 1
 		String[] toTestList1 = {"ad", "ads", "as", "fa", "fad", "fads", "fas", "sad"};
@@ -29,6 +30,7 @@ public class WordBuilderTest {
 	
 	@Test
 	public void testFindContains() throws IOException {
+		//Should return valid words that contain input letters
 		WordBuilder testFindContains = new WordBuilder();
 		//case 1
 		String[] toTestList1 = {"fatheadedness", "fatheadednesses"};
@@ -48,6 +50,7 @@ public class WordBuilderTest {
 	
 	@Test
 	public void testFindAnagram() throws IOException {
+		//Should return valid anagrams of input
 		WordBuilder testFindAnagram = new WordBuilder();
 		//case 1
 		String[] toTestList1 = {"opts", "post", "pots", "spot", "stop", "tops"};
@@ -65,6 +68,7 @@ public class WordBuilderTest {
 	
 	@Test
 	public void testNonAlphabet() throws IOException {
+		//All returns should be empty when using non-alphabet characters
 		WordBuilder testNonAlphabet = new WordBuilder();
 		//findBuild()
 		List<String> testList1 = testNonAlphabet.findBuild("( ) ` ~ ! @ # $ % ^ & * - + = | \\ { } [ ] : ; \" ' < > , . ? /");

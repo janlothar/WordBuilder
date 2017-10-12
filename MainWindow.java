@@ -104,7 +104,7 @@ public class MainWindow {
 			public void actionPerformed(ActionEvent arg0) {
 				listResults.clear();
 				String userInput = textPaneInput.getText();
-				List<String> results = dictionary.findContains(userInput);
+				List<String> results = dictionary.find("contains", userInput);
 				for (int i=0;i<results.size();i++){
 					listResults.addElement(results.get(i));
 				}
@@ -117,7 +117,7 @@ public class MainWindow {
 			public void actionPerformed(ActionEvent arg0) {
 				listResults.clear();
 				String userInput = textPaneInput.getText();
-				List<String> results = dictionary.findAnagram(userInput);
+				List<String> results = dictionary.find("anagram", userInput);
 				for (int i=0;i<results.size();i++){
 					listResults.addElement(results.get(i));
 				}
@@ -129,7 +129,7 @@ public class MainWindow {
 			public void actionPerformed(ActionEvent arg0) {
 				listResults.clear();
 				String userInput = textPaneInput.getText();
-				List<String> results = dictionary.findBuild(userInput);
+				List<String> results = dictionary.find("build", userInput);
 				for (int i=0;i<results.size();i++){
 					listResults.addElement(results.get(i));
 				}

@@ -50,24 +50,27 @@ public class WordBuilder{
 		return -1;
 	}
 	
-	//Return List of words containing searched letters
-	public List<String> findContains(String contains){
-		List<String> toReturn = new ArrayList<String>();						//List to return that will be empty if no matching words are found
-		for(int i=0;i<dictionary.size();i++){										//Go through each word in dictionary
-			if (checkLetters(contains.split(""), dictionary.get(i).split(""))){	
-				toReturn.add(dictionary.get(i));									//add word to toReturn if matches
+	public List<String> find(String buildType, String contains){
+		List<String> toReturn = new ArrayList<String>();
+		for(int i=0;i<dictionary.size();i++){
+			switch(buildType) {
+			case "build":
+				if (checkLettersBuild(contains.split(""), dictionary.get(i).split(""))){
+					toReturn.add(dictionary.get(i));
+				}
+				break;
+			case "contains":
+				if (checkLetters(contains.split(""), dictionary.get(i).split(""))){
+					toReturn.add(dictionary.get(i));
+				}
+				break;
+			case "anagram":
+				if (contains.length() == dictionary.get(i).length() && checkLetters(contains.split(""), dictionary.get(i).split(""))) {
+					toReturn.add(dictionary.get(i));
+				}
+				break;
 			}
-		}
-		return toReturn;
-	}
-	
-	//Return List of words that can be built from given letters
-	public List<String> findBuild(String contains){
-		List<String> toReturn = new ArrayList<String>();						//List to return that will be empty if no matching words are found
-		for(int i=0;i<dictionary.size();i++){										//Go through each word in dictionary
-			if (checkLettersBuild(contains.split(""), dictionary.get(i).split(""))){	
-				toReturn.add(dictionary.get(i));									//add word to toReturn if matches
-			}
+			
 		}
 		return toReturn;
 	}
@@ -86,17 +89,6 @@ public class WordBuilder{
 			}
 		}
 		return true;
-	}
-	
-	//Return list of words that use exactly the given letters
-	public List<String> findAnagram(String contains){
-		List<String> toReturn = new ArrayList<String>();						//List to return that will be empty if no matching words are found
-		for(int i=0;i<dictionary.size();i++){										//Go through each word in dictionary
-			if (contains.length() == dictionary.get(i).length() && checkLetters(contains.split(""), dictionary.get(i).split(""))){	//For anagram word must be as long as input string
-				toReturn.add(dictionary.get(i));									//add word to toReturn if matches
-			}
-		}
-		return toReturn;
 	}
 	
 	public boolean checkLetters(String[] letters, String[] word){

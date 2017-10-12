@@ -17,13 +17,9 @@ public class WordBuilder{
 	private List<String> dictionary;
 	
 	public WordBuilder() throws IOException {
-		dictionary = readFile(FILE_NAME);
-	}
-	
-	//Reads lines from FILE_NAME and adds to variable dictionary
-	List<String> readFile(String aFileName) throws IOException {
-		Path path = Paths.get(aFileName);
-		return Files.readAllLines(path, ENCODING);
+		//Reads lines from FILE_NAME and adds to variable dictionary
+		Path path = Paths.get(FILE_NAME);
+		dictionary = Files.readAllLines(path, ENCODING);
 	}
 	
 	//Print methods aren't used any more since GUI but are useful for tests

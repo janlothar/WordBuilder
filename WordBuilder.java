@@ -51,28 +51,28 @@ public class WordBuilder{
 	}
 	
 	public List<String> find(String buildType, String contains){
-		List<String> toReturn = new ArrayList<String>();
+		List<String> listOfFoundWords = new ArrayList<String>();
 		for(int i=0;i<dictionary.size();i++){
 			switch(buildType) {
 			case "build":
 				if (checkLettersBuild(contains.split(""), dictionary.get(i).split(""))){
-					toReturn.add(dictionary.get(i));
+					listOfFoundWords.add(dictionary.get(i));
 				}
 				break;
 			case "contains":
 				if (checkLetters(contains.split(""), dictionary.get(i).split(""))){
-					toReturn.add(dictionary.get(i));
+					listOfFoundWords.add(dictionary.get(i));
 				}
 				break;
 			case "anagram":
 				if (contains.length() == dictionary.get(i).length() && checkLetters(contains.split(""), dictionary.get(i).split(""))) {
-					toReturn.add(dictionary.get(i));
+					listOfFoundWords.add(dictionary.get(i));
 				}
 				break;
 			}
 			
 		}
-		return toReturn;
+		return listOfFoundWords;
 	}
 	
 	//[ARRAY] returns true if letters can make word
